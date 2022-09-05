@@ -6,12 +6,12 @@ from pathlib import Path
 import shutil
 
 Tk().withdraw() # we don't want a full GUI, so keep the root window from appearing
-filename =askopenfilename() # show an "Open" dialog box and return the path to the selected file
+filename =askopenfilename(title="Válaszd ki az átalakítandó epub fájlt:") # show an "Open" dialog box and return the path to the selected file
 new_file_name = filename.replace(".epub", ".zip")
 os.rename(filename, new_file_name)
 
 with zipfile.ZipFile(new_file_name, 'r') as zip_ref:
-    folder = askdirectory()
+    folder = askdirectory(title="Válaszd ki, hova szeretnéd menteni a módosított fájlt:")
     head, tail = os.path.split(new_file_name)
     extract = os.path.join(folder, tail.replace(".zip",""))
     zip_ref.extractall(extract)
@@ -35,3 +35,4 @@ with zipfile.ZipFile(target, 'w', zipfile.ZIP_DEFLATED) as zip_ref:
             zip_ref.write(file_path, arcname=os.path.relpath(file_path, extract))
 os.rename(target, target.replace(".zip", ".epub"))
 shutil.rmtree(extract)
+k  =input("Nyomd meg az x-et a kilépéshez:")
