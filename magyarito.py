@@ -3,7 +3,6 @@ from tkinter.filedialog import askopenfilename, askdirectory
 import os
 import zipfile
 from pathlib import Path
-from os.path import basename
 import shutil
 
 Tk().withdraw() # we don't want a full GUI, so keep the root window from appearing
